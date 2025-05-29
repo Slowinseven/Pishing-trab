@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='wifi-foto.ico') }}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+  </head>
+  <body>
+    <header class="flex flex-col">
+        <h1 class="text-5xl font-bold text-blue-500 text-center mt-10">
+            Cadastre-se
+        </h1>
+        <div class="flex justify-center items-center mt-5">
+            <img class="w-20" src="{{ url_for('static', filename='img/wifi-foto.jpg') }}" alt="imagem-wifi">
+        </div>
+    </header>
+
+    <main class="flex flex-col items-center">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="mt-4">
+            {% for category, message in messages %}
+              <li class="text-red-500 font-bold">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <form id="cadastroForm" action="{{ url_for('cadastro') }}" method="POST" class="mt-6"> 
+            <h1 class="text-sm font-bold mt-4">Nome Completo:</h1>
+            <input name="nome" class="border rounded-xl w-64 px-4 py-2 mt-2" type="text" placeholder="Seu Nome Completo" />
+
+            <h1 class="text-sm font-bold mt-4">Email:</h1>
+            <input name="email" class="border rounded-xl w-64 px-4 py-2 mt-2" type="text" placeholder="Digite seu email..." />
+
+            <h1 class="text-sm font-bold mt-4">Senha:</h1>
+            <input name="senha" class="border rounded-xl w-64 px-4 py-2 mt-2" type="password" placeholder="Digite sua senha..." />
+
+            <h1 class="text-sm font-bold mt-4">CPF:</h1>
+            <input name="cpf" class="border rounded-xl w-64 px-4 py-2 mt-2" type="text" placeholder="Digite seu CPF..." />
+
+            <div class="flex justify-center mt-6">
+                <button type="submit" class="bg-blue-500 text-white w-40 text-center rounded-xl font-bold py-2">Concluir</button>
+            </div>
+        </form>
+
+        <a class="text-xs underline text-center mt-4" href="Entrar.html">Já possuo uma conta</a>
+
+        <div class="flex justify-center items-center mt-4">
+            <img class="w-24" src="{{ url_for('static', filename='img/logo_prefeitura-removebg-preview.png') }}" alt="logo-prefeitura">
+        </div>
+    </main>
+  </body>
+</html>
